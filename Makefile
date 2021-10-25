@@ -19,7 +19,7 @@ pull:
 	@mirthsync.sh -s ${DEV_URL} -u ${DEV_USER} -p ${DEV_PASS} -t src pull
 
 .PHONY: push
-push: debug
+push:
 	@mirthsync.sh -s ${STAGE_URL} -u ${STAGE_USER} -p ${STAGE_PASS} -t src push
 
 ##-- Debug --##
@@ -28,5 +28,4 @@ push: debug
 .PHONY: debug
 debug:
 	@echo "BRANCH:     $(BRANCH)"
-	@echo "STAGE_URL:  $(STAGE_URL)"
 # end

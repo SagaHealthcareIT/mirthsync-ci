@@ -18,8 +18,8 @@ jobs:
       with:
         java-version: '11'
         distribution: 'adopt'
-        cache: mirthsync
+        # cache: mirthsync
     - name: Do something
-      run: echo 'there'
+      run: make --help
     - name: Do something else
       run: echo 'hello'

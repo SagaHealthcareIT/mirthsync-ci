@@ -36,6 +36,6 @@ jobs:
         ln -s ~/mirthsync-2.1.1/bin/mirthsync.sh /usr/local/bin/mirthsync.sh
         
     - name: Do something
-      run: mirthsync.sh -s ignorethistoo -u "${MSYNC_USER}" -p ignorethis -t src push
+      run: make push
     - name: Do something else
       run: echo $PATH

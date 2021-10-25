@@ -1,0 +1,7 @@
+export DEV_URL=https://localhost:8443/api
+export DEV_USER=admin
+export DEV_PASS=replaceme
+
+export STAGE_URL=
+export STAGE_USER=
+export STAGE_PASS=

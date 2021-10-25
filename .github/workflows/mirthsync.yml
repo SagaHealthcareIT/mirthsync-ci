@@ -20,6 +20,6 @@ jobs:
         distribution: 'adopt'
         cache: mirthsync
     - name: Do something
-      run: make
+      run: echo 'there'
     - name: Do something else
       run: echo 'hello'

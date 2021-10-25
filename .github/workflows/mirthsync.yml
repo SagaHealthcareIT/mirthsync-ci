@@ -36,4 +36,4 @@ jobs:
         ln -s /opt/mirthsync-2.1.1/bin/mirthsync.sh /usr/local/bin/mirthsync.sh
         
     - name: mirthSync push
-      run: make push
+      run: STAGE_URL=${{ secrets.STAGE_URL }} make push

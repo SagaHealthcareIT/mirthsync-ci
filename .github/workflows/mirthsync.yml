@@ -20,10 +20,10 @@ jobs:
         distribution: 'adopt'
     - name: Install mirthSync
       run: 
-        curl -L -O https://github.com/SagaHealthcareIT/mirthsync/releases/download/2.1.1/mirthsync-2.1.1.tar.gz && \
-        echo 'f06447d3de010a01c512a7a8bb60b8333ed9d2a29a12501e0aeaef1a3b81c66a  mirthsync-2.1.1.tar.gz' | sha256sum -c && \
+        curl -L -O https://github.com/SagaHealthcareIT/mirthsync/releases/download/2.1.1/mirthsync-2.1.1.tar.gz &&
+        echo 'f06447d3de010a01c512a7a8bb60b8333ed9d2a29a12501e0aeaef1a3b81c66a  mirthsync-2.1.1.tar.gz' | sha256sum -c &&
         tar -xvzf mirthsync-2.1.1.tar.gz -C ~/mirthsync-2.1.1
     - name: Do something
       run: make --help
     - name: Do something else
-      run: echo 'hello'
+      run: echo $PATH

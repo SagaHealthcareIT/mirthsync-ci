@@ -22,16 +22,17 @@ jobs:
     - uses: actions/cache@v2
       id: cache-mirthsync
       with:
-        path: | 
-          /usr/local/bin/mirthsync.sh
-          /opt/mirthsync-2.1.1/**
-        key: ${{ runner.os }}-${{ hashFiles('/opt/mirthsync-2.1.1/**') }}
+        path: mirthsync-2.1.1.tar.gz
+        key: ${{ runner.os }}-mirthsync-2.1.1.tar.gz
         
-    - name: Install mirthSync
+    - name: Download mirthSync
       if: steps.cache-mirthsync.outputs.cache-hit != 'true'
       run: 
         curl -L -O https://github.com/SagaHealthcareIT/mirthsync/releases/download/2.1.1/mirthsync-2.1.1.tar.gz &&
-        echo 'f06447d3de010a01c512a7a8bb60b8333ed9d2a29a12501e0aeaef1a3b81c66a  mirthsync-2.1.1.tar.gz' | sha256sum -c &&
+        echo 'f06447d3de010a01c512a7a8bb60b8333ed9d2a29a12501e0aeaef1a3b81c66a  mirthsync-2.1.1.tar.gz' | sha256sum -c
+
+    - name: Unpack mirthSync
+      run:
         tar -xvzf mirthsync-2.1.1.tar.gz -C /opt &&
         ln -s /opt/mirthsync-2.1.1/bin/mirthsync.sh /usr/local/bin/mirthsync.sh
         

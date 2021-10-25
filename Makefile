@@ -16,11 +16,11 @@ SHORT_HASH := `git rev-parse --short HEAD`
 
 .PHONY: pull
 pull:
-	mirthsync.sh -s "${DEV_URL}" -u "${DEV_USER}" -p "${DEV_PASS}" -t src pull
+	@mirthsync.sh -s "${DEV_URL}" -u "${DEV_USER}" -p "${DEV_PASS}" -t src pull
 
 .PHONY: push
 push:
-	mirthsync.sh -s "${STAGE_URL}" -u "${STAGE_USER}" -p "${STAGE_PASS}" -t src push
+	@mirthsync.sh -s "${STAGE_URL}" -u "${STAGE_USER}" -p "${STAGE_PASS}" -t src push
 
 ##-- Debug --##
 

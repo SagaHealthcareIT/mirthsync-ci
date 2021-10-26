@@ -97,7 +97,7 @@
           <queueBufferSize>1000</queueBufferSize>
           <reattachAttachments>true</reattachAttachments>
         </destinationConnectorProperties>
-        <script>return "Hello world2";</script>
+        <script>return "Hello world3";</script>
       </properties>
       <transformer version="3.11.0">
         <elements>

@@ -20,7 +20,7 @@ pull:
 
 .PHONY: push
 push:
-	@mirthsync.sh -s ${STAGE_URL} -u ${STAGE_USER} -p ${STAGE_PASS} -t src -v push
+	@mirthsync.sh -s ${STAGE_URL} -u ${STAGE_USER} -p ${STAGE_PASS} -t src -f push
 
 ##-- Debug --##
 

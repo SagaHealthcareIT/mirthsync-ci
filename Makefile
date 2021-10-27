@@ -22,6 +22,13 @@ pull:
 push:
 	@mirthsync.sh -s ${STAGE_URL} -u ${STAGE_USER} -p ${STAGE_PASS} -t src --include-configuration-map -f push
 
+.PHONY: clean
+clean:
+	rm -rf src
+
+.PHONY: clean-pull
+clean-pull: clean pull
+
 ##-- Debug --##
 
 # debug - display all environment variables

@@ -8,4 +8,10 @@ value</value>
       <comment>this is a comment</comment>
     </com.mirth.connect.util.ConfigurationProperty>
   </entry>
+  <entry>
+    <string>This is a new key</string>
+    <com.mirth.connect.util.ConfigurationProperty>
+      <value>test</value>
+    </com.mirth.connect.util.ConfigurationProperty>
+  </entry>
 </map>

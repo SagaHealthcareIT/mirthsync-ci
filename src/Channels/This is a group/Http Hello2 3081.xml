@@ -3,7 +3,7 @@
   <nextMetaDataId>2</nextMetaDataId>
   <name>Http Hello2 3081</name>
   <description/>
-  <revision>3</revision>
+  <revision>5</revision>
   <sourceConnector version="3.9.0">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -40,6 +40,7 @@
       <responseDataTypeBinary>false</responseDataTypeBinary>
       <responseStatusCode/>
       <responseHeaders class="linked-hash-map"/>
+      <responseHeadersVariable/>
       <useResponseHeadersVariable>false</useResponseHeadersVariable>
       <charset>UTF-8</charset>
       <contextPath/>
@@ -97,7 +98,7 @@
           <queueBufferSize>1000</queueBufferSize>
           <reattachAttachments>true</reattachAttachments>
         </destinationConnectorProperties>
-        <script>return "Hello world2";</script>
+        <script>return "Hello world23sdf4";</script>
       </properties>
       <transformer version="3.9.0">
         <elements>
@@ -217,7 +218,7 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1556295942216</time>
+        <time>1635349702648</time>
         <timezone>America/New_York</timezone>
       </lastModified>
       <pruningSettings>

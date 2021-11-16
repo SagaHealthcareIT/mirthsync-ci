@@ -3,7 +3,7 @@
   <nextMetaDataId>2</nextMetaDataId>
   <name>Http Hello3 3082</name>
   <description/>
-  <revision>4</revision>
+  <revision>5</revision>
   <sourceConnector version="3.9.0">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -40,6 +40,7 @@
       <responseDataTypeBinary>false</responseDataTypeBinary>
       <responseStatusCode/>
       <responseHeaders class="linked-hash-map"/>
+      <responseHeadersVariable/>
       <useResponseHeadersVariable>false</useResponseHeadersVariable>
       <charset>UTF-8</charset>
       <contextPath/>
@@ -176,6 +177,7 @@ return;</postprocessingScript>
   <deployScript>// This script executes once when the channel is deployed
 // You only have access to the globalMap and globalChannelMap here to persist data
 logger.info('http hello2 deploy');
+logger.info('this is a test');
 return;</deployScript>
   <undeployScript>// This script executes once when the channel is undeployed
 // You only have access to the globalMap and globalChannelMap here to persist data
@@ -217,7 +219,7 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1615839678925</time>
+        <time>1637099505599</time>
         <timezone>America/New_York</timezone>
       </lastModified>
       <pruningSettings>

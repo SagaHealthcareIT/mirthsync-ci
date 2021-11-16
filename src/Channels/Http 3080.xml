@@ -3,7 +3,7 @@
   <nextMetaDataId>3</nextMetaDataId>
   <name>Http 3080</name>
   <description/>
-  <revision>5</revision>
+  <revision>6</revision>
   <sourceConnector version="3.9.0">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -344,7 +344,7 @@
     </connector>
     <connector version="3.9.0">
       <metaDataId>2</metaDataId>
-      <name>Destination 1</name>
+      <name>My new destination</name>
       <properties class="com.mirth.connect.connectors.vm.VmDispatcherProperties" version="3.9.0">
         <pluginProperties/>
         <destinationConnectorProperties version="3.9.0">
@@ -593,7 +593,7 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1637099801393</time>
+        <time>1637100028018</time>
         <timezone>America/New_York</timezone>
       </lastModified>
       <pruningSettings>

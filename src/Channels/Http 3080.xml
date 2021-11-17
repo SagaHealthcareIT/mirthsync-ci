@@ -3,7 +3,7 @@
   <nextMetaDataId>3</nextMetaDataId>
   <name>Http 3080</name>
   <description/>
-  <revision>7</revision>
+  <revision>8</revision>
   <sourceConnector version="3.9.0">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -165,6 +165,7 @@
           <reattachAttachments>true</reattachAttachments>
         </destinationConnectorProperties>
         <script>logger.info('this is a test');
+logger.info('this is a test');
 return "hello world";</script>
       </properties>
       <transformer version="3.9.0">
@@ -594,7 +595,7 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1637162513053</time>
+        <time>1637173474243</time>
         <timezone>America/New_York</timezone>
       </lastModified>
       <pruningSettings>

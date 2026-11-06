@@ -4,35 +4,51 @@ on:
   push:
     branches: [ main ]
 
+# Deploy to staging one run at a time.
+concurrency:
+  group: mirthsync-staging
+  cancel-in-progress: false
+
+env:
+  MIRTHSYNC_VERSION: 3.9.0
+  MIRTHSYNC_SHA256: c17afe0ff64fcf5ed327c3346ab542144ef42477ea1346969775c6d175d3ae10
+
 jobs:
-  build:
-
+  deploy-staging:
     runs-on: ubuntu-latest
-
+    timeout-minutes: 15
+    env:
+      # Read once so the push step can be skipped when no staging server is
+      # configured: this public sample has none of its own.
+      STAGE_URL: ${{ secrets.STAGE_URL }}
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
+      - uses: actions/checkout@v7
 
-    - uses: actions/cache@v4
-      id: cache-mirthsync
-      with:
-        path: mirthsync-3.9.0.tar.gz
-        key: ${{ runner.os }}-mirthsync-3.9.0.tar.gz
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
 
-    - name: Download mirthSync
-      if: steps.cache-mirthsync.outputs.cache-hit != 'true'
-      run:
-        curl -L -O https://github.com/SagaHealthcareIT/mirthsync/releases/download/3.9.0/mirthsync-3.9.0.tar.gz &&
-        echo 'c17afe0ff64fcf5ed327c3346ab542144ef42477ea1346969775c6d175d3ae10  mirthsync-3.9.0.tar.gz' | sha256sum -c
+      - name: Install mirthSync
+        run: |
+          curl -fsSL -O "https://github.com/SagaHealthcareIT/mirthsync/releases/download/${MIRTHSYNC_VERSION}/mirthsync-${MIRTHSYNC_VERSION}.tar.gz"
+          echo "${MIRTHSYNC_SHA256}  mirthsync-${MIRTHSYNC_VERSION}.tar.gz" | sha256sum -c
+          tar -xzf "mirthsync-${MIRTHSYNC_VERSION}.tar.gz" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/mirthsync-${MIRTHSYNC_VERSION}/bin" >> "$GITHUB_PATH"
 
-    - name: Unpack mirthSync
-      run:
-        tar -xvzf mirthsync-3.9.0.tar.gz -C /opt &&
-        ln -s /opt/mirthsync-3.9.0/bin/mirthsync.sh /usr/local/bin/mirthsync.sh
+      - name: Check mirthSync
+        run: mirthsync.sh --version
 
-    - name: mirthSync push
-      run: STAGE_URL=${{ secrets.STAGE_URL }} STAGE_USER=${{ secrets.STAGE_USER }} STAGE_PASS=${{ secrets.STAGE_PASS }} make push-remote
+      - name: mirthSync push
+        if: env.STAGE_URL != ''
+        env:
+          STAGE_USER: ${{ secrets.STAGE_USER }}
+          MIRTHSYNC_PASSWORD: ${{ secrets.STAGE_PASS }}
+        run: >
+          mirthsync.sh -s "$STAGE_URL" -u "$STAGE_USER"
+          -t src --include-configuration-map -f
+          --deploy-changed --deploy-new push
+
+      - name: No staging server configured
+        if: env.STAGE_URL == ''
+        run: echo "::notice::STAGE_URL is not set, so the push to staging was skipped. Add the STAGE_URL, STAGE_USER and STAGE_PASS secrets to deploy."

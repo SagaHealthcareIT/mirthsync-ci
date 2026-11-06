@@ -16,16 +16,16 @@ SHORT_HASH := `git rev-parse --short HEAD`
 
 .PHONY: pull-local
 pull-local:
-	@mirthsync.sh -s ${DEV_URL} -u ${DEV_USER} -p ${DEV_PASS} -t src --include-configuration-map -i -f pull
+	@MIRTHSYNC_PASSWORD="${DEV_PASS}" mirthsync.sh -s ${DEV_URL} -u ${DEV_USER} -t src --include-configuration-map -i -f pull
 
 .PHONY: push-local
 push-local:
-	@mirthsync.sh -s ${DEV_URL} -u ${DEV_USER} -p ${DEV_PASS} -t src --include-configuration-map -i -f push
+	@MIRTHSYNC_PASSWORD="${DEV_PASS}" mirthsync.sh -s ${DEV_URL} -u ${DEV_USER} -t src --include-configuration-map -i -f push
 
 
 .PHONY: push-remote
 push-remote:
-	@mirthsync.sh -s ${STAGE_URL} -u ${STAGE_USER} -p ${STAGE_PASS} -t src --include-configuration-map -f push
+	@MIRTHSYNC_PASSWORD="${STAGE_PASS}" mirthsync.sh -s ${STAGE_URL} -u ${STAGE_USER} -t src --include-configuration-map -f --deploy-changed --deploy-new push
 
 .PHONY: clean
 clean:

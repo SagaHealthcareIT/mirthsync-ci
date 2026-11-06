@@ -10,29 +10,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up JDK 11
-      uses: actions/setup-java@v2
+    - uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
       with:
-        java-version: '11'
-        distribution: 'adopt'
+        java-version: '17'
+        distribution: 'temurin'
 
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache-mirthsync
       with:
-        path: mirthsync-2.1.1.tar.gz
-        key: ${{ runner.os }}-mirthsync-2.1.1.tar.gz
-        
+        path: mirthsync-3.9.0.tar.gz
+        key: ${{ runner.os }}-mirthsync-3.9.0.tar.gz
+
     - name: Download mirthSync
       if: steps.cache-mirthsync.outputs.cache-hit != 'true'
-      run: 
-        curl -L -O https://github.com/SagaHealthcareIT/mirthsync/releases/download/2.1.1/mirthsync-2.1.1.tar.gz &&
-        echo 'f06447d3de010a01c512a7a8bb60b8333ed9d2a29a12501e0aeaef1a3b81c66a  mirthsync-2.1.1.tar.gz' | sha256sum -c
+      run:
+        curl -L -O https://github.com/SagaHealthcareIT/mirthsync/releases/download/3.9.0/mirthsync-3.9.0.tar.gz &&
+        echo 'c17afe0ff64fcf5ed327c3346ab542144ef42477ea1346969775c6d175d3ae10  mirthsync-3.9.0.tar.gz' | sha256sum -c
 
     - name: Unpack mirthSync
       run:
-        tar -xvzf mirthsync-2.1.1.tar.gz -C /opt &&
-        ln -s /opt/mirthsync-2.1.1/bin/mirthsync.sh /usr/local/bin/mirthsync.sh
-        
+        tar -xvzf mirthsync-3.9.0.tar.gz -C /opt &&
+        ln -s /opt/mirthsync-3.9.0/bin/mirthsync.sh /usr/local/bin/mirthsync.sh
+
     - name: mirthSync push
       run: STAGE_URL=${{ secrets.STAGE_URL }} STAGE_USER=${{ secrets.STAGE_USER }} STAGE_PASS=${{ secrets.STAGE_PASS }} make push-remote

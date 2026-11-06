@@ -14,6 +14,11 @@ how mirthSync can be used to push reviewed and approved code from development or
 feature branches to a staging environment for testing. In the future, we will
 add examples of workflows for Bitbucket, Jenkins, CodeBuild and more.
 
+The workflow uses mirthSync 3.9.0, and `src/` is in the layout it writes:
+channels sit in group folders (ungrouped ones in `Default Group`) and their
+scripts are separate `.js` files. Run `make pull-local` against your own
+development server to replace the sample code with yours.
+
 ## License
 
 Copyright © 2017-2021 Saga IT LLC
